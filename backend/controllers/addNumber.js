@@ -3,7 +3,7 @@ import Game from "../database/gameSchema.js";
 import updateGame from "../helpers/updateGame.js";
 import { ObjectId } from "mongodb";
 
-export const addElementIntoBoard = async (req, res) => {
+export const addNumber = async (req, res) => {
   try {
     const gameId = new ObjectId(req.params.id);
     let board = await Game.findOne({ _id: gameId });
@@ -65,7 +65,7 @@ export const addElementIntoBoard = async (req, res) => {
     });
   } catch (err) {
     return res.status(500).json({
-      message: "Interal Server error",
+      message: "Internal Server error",
     });
   }
 };

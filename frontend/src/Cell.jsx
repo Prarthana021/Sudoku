@@ -3,15 +3,19 @@ import { useMemo } from "react";
 import "./cell.css";
 
 function Cell({ row, col, cell, onCellClick, onChange, isSelected, isPrimarySelected }) {
-  // Flatten notes array
   const { value, notes } = cell;
-  const newNotes = useMemo(() => notes.flat(1), [notes]);
+  const newNotes = useMemo(() => {
+    return notes.flat(1);
+  }, [notes]);
 
   const handleOnChange = (e) => {
-    if (e.target.value === "0") return;  // Don't change if 0 is entered
+    if (e.target.value === "0") return;
 
-    // Update the value of the cell
-    const updatedCell = { ...cell, value: e.target.value };
+    // Construct a new cell object with the updated value
+    const updatedCell = {
+      ...cell, // Copy the existing cell object
+      value: e.target.value, // Update the value
+    };
     onChange(updatedCell);
   };
 
@@ -20,45 +24,43 @@ function Cell({ row, col, cell, onCellClick, onChange, isSelected, isPrimarySele
       {value > 0 ? (
         <input
           type="text"
-          className={`m-0 h-14 w-14 cursor-default border text-center rounded-lg shadow-md transition-all duration-200 
-          ${isSelected ? "bg-gray-200 border-blue-400" : "border-gray-800"}
-          ${isPrimarySelected ? "bg-green-500 text-white" : ""}
-          hover:bg-gray-100 focus:ring-2 focus:ring-blue-300`}
+          className={`m-0 h-14 w-14 cursor-default border border-gray-800 text-center caret-transparent focus:outline-none ${
+            isSelected ? "bg-[#98FBCB]" : "" // Darker color when selected
+          } ${isPrimarySelected ? "bg-#7FCFA8-400 text-white" : ""}`}
           value={value == -1 ? "" : value}
           onChange={handleOnChange}
           onClick={() => onCellClick({ row, col })}
           maxLength="1"
+          style={{ fontSize: "32px" }} // Increased font size
         />
       ) : (
         <div style={{ position: "relative" }}>
           <input
             type="text"
-            className={`m-0 h-14 w-14 cursor-default border border-gray-800 text-center caret-transparent focus:outline-none 
-            ${isSelected ? "bg-gray-200" : ""} ${isPrimarySelected ? "bg-gray-400 text-white" : ""}`}
+            className={`m-0 h-14 w-14 cursor-default border border-gray-800 text-center caret-transparent focus:outline-none ${
+              isSelected ? "bg-[#98FBCB]" : "" // Darker color when selected
+            } ${isPrimarySelected ? "bg-#7FCFA8-400 text-white" : ""}`}
             value={""}
             onChange={handleOnChange}
             onClick={() => onCellClick({ row, col })}
             maxLength="1"
+            style={{ fontSize: "20px" }} // Increased font size
           />
-          <div className="sudoku-notes-container">
-            {[...Array(3)].map((_, noteRowIndex) => (
-              <div className="sudoku-notes-row" key={noteRowIndex}>
-                {[...Array(3)].map((_, noteValueIndex) => {
-                  const noteValue = noteRowIndex * 3 + noteValueIndex + 1;
-                  return (
-                    <div key={noteValueIndex}>
-                      {newNotes.includes(noteValue) ? (
-                        <div className="note-block bg-blue-100 rounded-full text-blue-600 font-semibold shadow-sm">
-                          {noteValue}
-                        </div>
-                      ) : (
-                        <div className="note-block" />
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
+          <div className="sudoku-notes-container m-0 h-14 w-14">
+            {[...Array(3)].map((_, noteRowIndex) => {
+              return (
+                <div className="sudoku-notes-row" key={noteRowIndex}>
+                  {[...Array(3)].map((i, noteValueIndex) => {
+                    const noteValue = noteRowIndex * 3 + noteValueIndex + 1;
+                    return (
+                      <div key={i}>
+                        {newNotes.includes(noteValue) ? <div className="note-block">{noteValue} </div> : <div className="note-block" />}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

@@ -3,7 +3,7 @@ import Game from "../database/gameSchema.js";
 import updateGame from "../helpers/updateGame.js";
 import { ObjectId } from "mongodb";
 
-export const addElementIntoBoard = async (req, res) => {
+export const addNumberIntoBoard = async (req, res) => {
   try {
     const gameId = new ObjectId(req.params.id);
     let board = await Game.findOne({ _id: gameId });

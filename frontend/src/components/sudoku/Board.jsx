@@ -2,6 +2,8 @@ import { useEffect, useCallback, useState } from "react";
 import Cell from "./Cell";
 
 import Keypad from "./Keypad";
+import { getFourBoard, getNineBoard } from "../../../api/getBoard";
+import { getSingleGameById } from "../../../api/getGame";
 import PropTypes from "prop-types";
 import { useSudokuBoard } from "../providers/board-provider";
 import GameTimer from "./GameTimer";

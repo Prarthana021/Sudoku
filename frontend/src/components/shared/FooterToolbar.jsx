@@ -1,5 +1,13 @@
 import PropTypes from "prop-types";
+import {
+  undo,
+  undoUntilCorrect,
+  correctSoFar,
+  getRandomHint,
+  getSpecificHint,
+} from "../../../api/boardManipulation";
 import { useSudokuBoard } from "../providers/board-provider";
+import { switchNote } from "../../../api/notes";
 const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
   const { selectedCell, sudokuGrid, setSudokuGrid, setSelectedCell } = useSudokuBoard();
 

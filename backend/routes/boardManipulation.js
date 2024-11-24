@@ -1,5 +1,5 @@
 import express from "express";
-import { addNumber } from "../controllers/addNumber.js";
+import { addNumberIntoBoard } from "../controllers/addNumber.js";
 import { deleteElementFromBoard } from "../controllers/deleteElementFromBoard.js";
 import { checkIfSolved } from "../controllers/checkIfSolved.js";
 import { correctSoFar } from "../controllers/correctSoFar.js";
@@ -14,8 +14,8 @@ import callSpecificHint from "../controllers/getSpecificHint.js";
 
 const router = express.Router();
 
-// @route /api/addelement/{gameId}
-router.post("/addelement/:id", addNumber); // {valid:true or false, board,stack}
+// @route /api/addNumber/{gameId}
+router.post("/addnumber/:id", addNumberIntoBoard); // {valid:true or false, board,stack}
 
 // TODO frontend
 // @route /api/deleteelement/{gameId}
@@ -29,7 +29,7 @@ router.get("/checksolved/:id", checkIfSolved); // {isSolved:true/false}
 //@route /api/correctSoFar/{gameId}
 router.get("/correctSoFar/:id", correctSoFar); // {valid:true/false}
 
-// TODO Safal
+
 // @route /api/getRandomHint/{gameId}
 router.get("/getRandomHint/:id", callRandomHint); //{suggestedMove:{row,col,num}}
 

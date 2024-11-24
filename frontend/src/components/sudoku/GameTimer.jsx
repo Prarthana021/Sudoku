@@ -1,3 +1,4 @@
+// Mohammad
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -35,18 +36,17 @@ const GameTimer = ({ currentGameId }) => {
 
   return (
     <div>
-      <h3 >
-        <b style={{ fontSize: "24px" }}>⏰ {formatTime(seconds)}</b>
+      <h3>
+        <b>Time: {formatTime(seconds)}</b>
         <button
           onClick={togglePause}
           style={{
             marginLeft: "10px",
-            border: "1px solid #1F2937", // Dark gray border
-            backgroundColor: "#1F2937", // Dark gray background
+            border: "1px solid #1F2937", // Example blue color
+            backgroundColor: "#1F2937", // Example blue color
             color: "white",
-            padding: "5px 20px",
+            padding: "5px 10px",
             cursor: "pointer",
-            fontSize: "16px", // Button text size
           }}
         >
           {isActive ? "Pause" : seconds === 0 ? "Start" : "Resume"}

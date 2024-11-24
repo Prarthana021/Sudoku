@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { addNumber } from "../../api/boardManipulation";
+import { addNote } from "../../api/notes";
 export function useSudokuGrid(size, currentGameId, initialGrid) {
   // Initialize the grid state
   const [sudokuGrid, setSudokuGrid] = useState(() => {
@@ -68,7 +70,7 @@ export function useSudokuGrid(size, currentGameId, initialGrid) {
       // Update the value of the specified cell
       newGrid[row][col].value = numberValue;
 
-      addElementToBoard(currentGameId, row, col, numberValue);
+      addNumber(currentGameId, row, col, numberValue);
 
       // Update the state with the new grid
       setSudokuGrid(newGrid);

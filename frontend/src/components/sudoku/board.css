@@ -1,0 +1,24 @@
+
+.subgrid {
+  margin: 1px;
+  padding: 5px;
+  background-color: #BFFFED; 
+}
+
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  font-size: 18px;
+}
+
+.cell.selected {
+  background-color: #7FCFA8;
+}
+
+.keypad-button {
+  background-color: #558B71;
+}

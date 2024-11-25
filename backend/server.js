@@ -1,7 +1,7 @@
 import express, { application } from "express";
 import bodyParser from "body-parser";
 import boardManipulationRoute from "./routes/boardManipulation.js";
-import boardRouter from "./routes/gameBoard.js";
+import boardRouter from "./routes/getBoard.js";
 import makeDB from "./database/database.js";
 import gamesRouter from "./routes/games.js";
 import cors from "cors";

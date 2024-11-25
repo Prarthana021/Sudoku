@@ -41,43 +41,33 @@ const Navbar = ({ setBoardDimension, setDifficulty, setCurrentGameId }) => {
           {/* New Game Button */}
           <button
             onClick={handleNewGame}
-            className="cursor-pointer p-2 font-semibold rounded"
-            style={{ backgroundColor: "#98fbcb", color: "black" }}
+            className="cursor-pointer font-semibold rounded"
+            style={{
+              width: "100px", // Increased width
+              height: "40px", // Adjusted height
+              backgroundColor: "#98fbcb",
+              color: "black",
+            }}
           >
-            New Game
+            Start Again
           </button>
 
           {/* Difficulty Level Options - Always Visible */}
-          <button
-            onClick={() => handleDifficultyChange(1)}
-            className="cursor-pointer p-2 font-semibold rounded"
-            style={{
-              backgroundColor: selectedDifficulty === 1 ? "#98fbcb" : "#98fbcb",
-              color: "black",
-            }}
-          >
-            Easy
-          </button>
-          <button
-            onClick={() => handleDifficultyChange(2)}
-            className="cursor-pointer p-2 font-semibold rounded"
-            style={{
-              backgroundColor: selectedDifficulty === 2 ? "#98fbcb" : "#98fbcb",
-              color: "black",
-            }}
-          >
-            Medium
-          </button>
-          <button
-            onClick={() => handleDifficultyChange(3)}
-            className="cursor-pointer p-2 font-semibold rounded"
-            style={{
-              backgroundColor: selectedDifficulty === 3 ? "#98fbcb" : "#98fbcb",
-              color: "black",
-            }}
-          >
-            Hard
-          </button>
+          {["Easy", "Medium", "Hard"].map((label, index) => (
+            <button
+              key={label}
+              onClick={() => handleDifficultyChange(index + 1)}
+              className="cursor-pointer font-semibold rounded"
+              style={{
+                height: "40px", // Reduced height
+                padding: "0 8px", // Adjusted padding for compactness
+                backgroundColor: selectedDifficulty === index + 1 ? "#98fbcb" : "#98fbcb",
+                color: "black",
+              }}
+            >
+              {label}
+            </button>
+          ))}
         </div>
       </div>
 

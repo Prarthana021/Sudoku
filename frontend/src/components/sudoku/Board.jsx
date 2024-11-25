@@ -8,6 +8,10 @@ import { useSudokuBoard } from "../providers/board-provider";
 import GameTimer from "./GameTimer";
 import "./board.css";
 
+
+
+
+
 function Board({ currentGameId, setCurrentGameId, addNoteMode, boardDimension, setBoardDimension }) {
   const { sudokuGrid, setSudokuGrid, handleCellChange, selectedCell, setSelectedCell } = useSudokuBoard();
   const [isLoading, setIsLoading] = useState(true);
@@ -169,7 +173,7 @@ function Board({ currentGameId, setCurrentGameId, addNoteMode, boardDimension, s
               return (
                 <div
                   key={`cell-${cellRow}-${cellCol}`}
-                  className={`cell border-2 border-white rounded-sm ${getQuadrantColor(quadrantIndex)} ${isSelected && "bg-green-400 text-white"}`}
+                  className={`cell border-2 border-white rounded-sm ${getQuadrantColor(quadrantIndex)} ${isSelected && "bg-green-400 text-black"}`}
                 >
                   <Cell
                     row={cellRow}

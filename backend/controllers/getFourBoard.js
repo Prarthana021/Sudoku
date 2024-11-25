@@ -4,7 +4,7 @@ import createGame from "../helpers/createGame.js";
 export const getFourBoard = async (req, res, next) => {
   try {
     const id = parseInt(req.params.id);
-    // Check if id is not equal to 9
+    // Check if id is not equal to 4
     if (id !== 4) {
       // Assuming you want to skip the rest of the middleware stack
       // return {
@@ -14,7 +14,7 @@ export const getFourBoard = async (req, res, next) => {
       // If you want to send a response, use res.status().json() here
     }
     if (id === 4) {
-      // Generate a 9x9 Sudoku board and its solution
+      // Generate a 4x4 Sudoku board and its solution
       const dic = generateBoard(4, 4);
 
       const board = dic["cell"];

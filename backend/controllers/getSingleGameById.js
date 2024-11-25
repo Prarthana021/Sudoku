@@ -1,3 +1,5 @@
+//db.games.findOne({ _id: ObjectId("65613d985056fc4f970c8cdf") });
+
 import Game from "../database/gameSchema.js";
 import { ObjectId } from "mongodb";
 
@@ -17,7 +19,7 @@ const getSingleGameById = async (req, res) => {
     return res.json({ game });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ message: "Internal Server Error", error });
+    return res.status(500).json({ message: "Internal Server Error", err });
   }
 };
 export default getSingleGameById;

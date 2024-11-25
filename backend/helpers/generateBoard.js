@@ -1,4 +1,4 @@
-// create 4*4 9*9 16*16 boards
+// 4*4 9*9 16*16
 export const generateBoard = (m, n) => {
     let board = {};
   
@@ -178,3 +178,4 @@ export const generateBoard = (m, n) => {
   function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
+  

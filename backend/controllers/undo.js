@@ -9,7 +9,7 @@ const undo = async (req, res) => {
 
     if (!game || !game.stack || game.stack.length <= 1) {
       console.log("No more moves to undo.");
-      // Instead of returning an error, return a message indicating no more undo are possible
+      // Instead of returning an error, return a message indicating no more undos are possible
       return res.json({
         message: "No more moves to undo.",
         board: game ? game.problemBoard : null, // You can choose to return the current board or just a message

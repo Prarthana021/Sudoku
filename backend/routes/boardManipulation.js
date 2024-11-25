@@ -1,13 +1,48 @@
 import express from "express";
-import { addNumber } from "../controllers/addNumber.js";
+import { addNumberIntoBoard } from "../controllers/addNumber.js";
+import { deleteElementFromBoard } from "../controllers/deleteElementFromBoard.js";
+import { checkIfSolved } from "../controllers/checkIfSolved.js";
+import { correctSoFar } from "../controllers/correctSoFar.js";
+import undo from "../controllers/undo.js";
+import undoUntilCorrect from "../controllers/undoUntilCorrect.js";
 import addNotes from "../controllers/addNotes.js";
 import deleteNotes from "../controllers/deleteNotes.js";
 import undo from "../controllers/undo.js";
 
 const router = express.Router();
 
-// @route /api/addelement/{gameId}
-router.post("/addelement/:id", addNumber); // {valid:true or false, board,stack}
+// @route /api/addNumber/{gameId}
+router.post("/addnumber/:id", addNumberIntoBoard); // {valid:true or false, board,stack}
+
+// TODO frontend
+// @route /api/deleteelement/{gameId}
+router.post("/deleteelement/:id", deleteElementFromBoard); // {valid:true or false, board}
+
+// TODO frontend
+// @route /api/checksolved/{gameId}
+router.get("/checksolved/:id", checkIfSolved); // {isSolved:true/false}
+
+// TODO frontend
+//@route /api/correctSoFar/{gameId}
+router.get("/correctSoFar/:id", correctSoFar); // {valid:true/false}
+
+
+// @route /api/getRandomHint/{gameId}
+router.get("/getRandomHint/:id", callRandomHint); //{suggestedMove:{row,col,num}}
+
+// @route /api/getSpecificHint/{gameId}
+router.post("/getSpecificHint/:id", callSpecificHint); //{suggestedMove} suggestedMove means the element that we can add
+
+// @route /api/undo/{gameId}
+router.get("/undo/:id", undo); // {board}
+
+// @route /api/undountilcorrect/{gameId}
+router.get("/undountilcorrect/:id", undoUntilCorrect); // {board}
+
+// TODO: SwitchNoteMode - Revisit necessity
+//       If removing, look for same todo on frontend
+// @route /api/switchnote
+router.put("/switchnote/:id", switchNote);
 
 // @route /api/addnote/{gameId}
 router.put("/addnote/:id", addNotes);

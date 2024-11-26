@@ -1,4 +1,10 @@
 import PropTypes from "prop-types";
+import { PiLightbulbFilamentFill } from "react-icons/pi";
+import { PiLightbulbBold } from "react-icons/pi";
+import { PiNotePencilBold } from "react-icons/pi";
+import { PiArrowArcLeftFill } from "react-icons/pi";
+import { PiArrowBendDoubleUpLeftBold } from "react-icons/pi";
+
 import {
   undo,
   undoUntilCorrect,
@@ -97,7 +103,28 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
   };
 
   return (
+
     <div className="fixed bottom-0 right-0 flex flex-col items-end space-y-2 mr-4">
+     <div
+  className="icon-container flex flex-col justify-around items-center p-4 rounded-md"
+  style={{
+    backgroundColor: "#ffffff", // White background
+    borderRadius: "12px",
+    padding: "10px",
+    position: "absolute",
+    bottom: "180px",
+    right: "330px",
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Soft shadow
+    gap: "10px",
+  }}
+>
+  <PiLightbulbFilamentFill size={45} style={{ cursor: "pointer" }} />
+  <PiLightbulbBold size={45} style={{ cursor: "pointer" }} />
+  <PiNotePencilBold size={45} style={{ cursor: "pointer" }} />
+  <PiArrowBendDoubleUpLeftBold size={45} style={{ cursor: "pointer" }} />
+  <PiArrowArcLeftFill size={45} style={{ cursor: "pointer" }} />
+</div>
+
       <button
         className="p-4 text-black hover:bg-gray-200 flex items-center justify-center"
         style={{
@@ -108,9 +135,9 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           borderRadius: "8px",
           cursor: "pointer",
           width: "200px",
-          height: "50px",
+          height: "40px",
           position: "absolute",
-          top: "-250px",
+          top: "-240px",
           marginRight: "120px"
         }}
         onClick={handleUndo}
@@ -129,9 +156,9 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           borderRadius: "8px",
           cursor: "pointer",
           width: "200px",
-          height: "50px",
+          height: "40px",
           position: "absolute",
-          top: "-320px",
+          top: "-295px",
           marginRight: "120px"
         }}
         onClick={handleUndoUntilCorrect}
@@ -150,16 +177,15 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           borderRadius: "8px",
           cursor: "pointer",
           width: "200px",
-          height: "50px",
+          height: "40px",
           position: "absolute",
-          top:"-380px",
+          top:"-350px",
           marginRight: "120px"
           
         }}
         onClick={() => handleSwitchNoteMode()}
       >
-       
-        {addNoteMode ? "Note Mode" : "Note Mode"}
+        {addNoteMode ? "Note Mode On" : "Note Mode Off"}
       </button>
 
       <button
@@ -172,9 +198,9 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           borderRadius: "8px",
           cursor: "pointer",
           width: "200px",
-          height: "50px",
+          height: "40px",
           position: "absolute",
-          top:"-440px",
+          top:"-410px",
           marginRight: "120px"
         }}
         onClick={handleGetRandomHint}
@@ -183,6 +209,7 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
        Get Random Hint
       </button>
 
+
       <button
         className="p-4 text-black hover:bg-gray-200 flex items-center justify-center"
         style={{
@@ -193,9 +220,9 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           borderRadius: "8px",
           cursor: "pointer",
           width: "200px",
-          height: "50px",
+          height: "40px",
           position: "absolute",
-          top:"-500px",
+          top:"-465px",
           marginRight: "120px"
         }}
         onClick={handleGetSpecificHint}
@@ -213,11 +240,11 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           fontSize: "1rem",
           borderRadius: "8px",
           cursor: "pointer",
-          width: "300px",
+          width: "250px",
           height: "50px",
           position: "absolute",
-          marginRight: "430px",
-          top:"-180px"
+          marginRight: "490px",
+          top:"-200px"
         }}
         onClick={handleCheckBoard}
       >

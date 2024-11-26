@@ -23,12 +23,12 @@
 }
 
 .note-block.bg-blue-100 {
-  background-color: #98FBCB;  /* Light turquoise note color */
+  background-color: black;  /* Light turquoise note color */
   padding: 2px;
 }
 
 .note-block.bg-blue-200 {
-  background-color: #BFFFED;  /* Lightest turquoise */
+  background-color: black;  /* Lightest turquoise */
 }
 
 .cell {
@@ -47,7 +47,7 @@
 
 .cell.primary-selected {
   background-color: #558B71;  /* Dark green color for primary selection */
-  color: white;
+  color: black;
   font-weight: bold;
 }
 

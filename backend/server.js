@@ -5,6 +5,7 @@ import boardRouter from "./routes/getBoard.js";
 import makeDB from "./database/database.js";
 import gamesRouter from "./routes/games.js";
 import authRoutes from "./routes/authRoutes.js"; //User Authentication
+import gameRoutes from './routes/gameRoutes.js'; //Saving game state
 import cors from "cors";
 import dotenv from "dotenv";
 
@@ -29,10 +30,11 @@ app.use((req, res, next) => {
 app.use(express.static("dist"));
 
 // all routes called here
-app.use("/auth", authRoutes); // Add the authentication routes
+app.use("/auth", authRoutes); // For authentication (signup/login)
 app.use("/api", boardManipulationRoute);
 app.use("/api", boardRouter);
 app.use("/api", gamesRouter);
+app.use('/game', gameRoutes); // For game state handling
 
 app.listen(port, (err) => {
   makeDB();

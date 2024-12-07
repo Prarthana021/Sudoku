@@ -1,24 +1,84 @@
-
-.subgrid {
-  margin: 1px;
-  padding: 5px;
-  background-color: #BFFFED; 
+/* Sudoku Board Container */
+.sudoku-board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
+/* Sudoku Board Layout */
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr); /* Default for 9x9 board */
+  grid-template-rows: repeat(9, 1fr);
+  gap: 2px; /* Adjust for spacing between cells */
+  width: 100%; /* Responsive to container size */
+  max-width: 500px; /* Maximum size for board */
+  aspect-ratio: 1 / 1; /* Maintain square shape */
+  border: 2px solid #ccc; /* Border around the board */
+  background-color: #fff;
+}
 
+/* Individual Cell Styling */
 .cell {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  width: 50px;
-  font-size: 18px;
+  border: 1px solid #ddd;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #f9f9f9;
+  height: 100%; /* Consistent size with grid rows */
+  width: 100%; /* Consistent size with grid columns */
 }
 
+/* Styling for Selected Cells */
 .cell.selected {
-  background-color: #7FCFA8;
+  background-color: #7FCFA8; /* Slightly darker shade of green */
 }
 
+.cell.primary-selected {
+  background-color: #558B71; /* Dark green color for primary selection */
+  color: white;
+  font-weight: bold;
+}
+
+/* Subgrid Borders */
+.subgrid {
+  border: 2px solid #558B71; /* Green border around each 3x3 section */
+  background-color: #BFFFED; /* Green background for subgrids */
+}
+
+/* Keypad Button Styling */
 .keypad-button {
   background-color: #558B71;
+  color: white;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Keypad Button Hover Effect */
+.keypad-button:hover {
+  background-color: #6ba585;
+}
+
+/* Game Timer Styling */
+.game-timer {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Responsive Design for Mobile Screens */
+@media (max-width: 768px) {
+  .sudoku-board {
+    max-width: 300px; /* Adjust board size for smaller screens */
+  }
+
+  .cell {
+    font-size: 1rem; /* Adjust font size */
+  }
 }

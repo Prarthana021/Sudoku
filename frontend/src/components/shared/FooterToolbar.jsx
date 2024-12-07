@@ -11,9 +11,9 @@ import {
   correctSoFar,
   getRandomHint,
   getSpecificHint,
-} from "../../../api/boardManipulation";
+} from "../../api/boardManipulation";
 import { useSudokuBoard } from "../providers/board-provider";
-import { switchNote } from "../../../api/notes";
+import { switchNote } from "../../api/notes";
 const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
   const { selectedCell, sudokuGrid, setSudokuGrid, setSelectedCell } = useSudokuBoard();
 

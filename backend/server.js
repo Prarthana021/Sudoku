@@ -4,7 +4,6 @@ import boardManipulationRoute from "./routes/boardManipulation.js";
 import boardRouter from "./routes/getBoard.js";
 import makeDB from "./database/database.js";
 import gamesRouter from "./routes/games.js";
-import authRoutes from "./routes/authRoutes.js"; //User Authentication
 import cors from "cors";
 import dotenv from "dotenv";
 
@@ -29,12 +28,11 @@ app.use((req, res, next) => {
 app.use(express.static("dist"));
 
 // all routes called here
-app.use("/auth", authRoutes); // Add the authentication routes
 app.use("/api", boardManipulationRoute);
 app.use("/api", boardRouter);
 app.use("/api", gamesRouter);
 
-app.listen(port, (err) => {
+app.listen(port, '0.0.0.0', (err) => {
   makeDB();
   if (!err) {
     console.log(`Server is running on http://localhost:${port}/`);
@@ -42,3 +40,9 @@ app.listen(port, (err) => {
     console.log(err);
   }
 });
+
+app.use((req, res, next) => {
+	console.log(`Recieved request: ${req.method} ${req.path}`);
+	next();
+});
+

@@ -1,5 +1,5 @@
 import express from "express";
-import { addNumberIntoBoard } from "../controllers/addNumber.js";
+import { addElementIntoBoard } from "../controllers/addElementIntoBoard.js";
 import { deleteElementFromBoard } from "../controllers/deleteElementFromBoard.js";
 import { checkIfSolved } from "../controllers/checkIfSolved.js";
 import { correctSoFar } from "../controllers/correctSoFar.js";
@@ -7,14 +7,15 @@ import undo from "../controllers/undo.js";
 import undoUntilCorrect from "../controllers/undoUntilCorrect.js";
 import addNotes from "../controllers/addNotes.js";
 import switchNote from "../controllers/switchNotes.js";
+import resetGame from "../controllers/resetGame.js";
 import deleteNotes from "../controllers/deleteNotes.js";
 import callRandomHint from "../controllers/getRandomHint.js";
 import callSpecificHint from "../controllers/getSpecificHint.js";
 
 const router = express.Router();
 
-// @route /api/addNumber/{gameId}
-router.post("/addnumber/:id", addNumberIntoBoard); // {valid:true or false, board,stack}
+// @route /api/addelement/{gameId}
+router.post("/addelement/:id", addElementIntoBoard); // {valid:true or false, board,stack}
 
 // TODO frontend
 // @route /api/deleteelement/{gameId}
@@ -28,7 +29,7 @@ router.get("/checksolved/:id", checkIfSolved); // {isSolved:true/false}
 //@route /api/correctSoFar/{gameId}
 router.get("/correctSoFar/:id", correctSoFar); // {valid:true/false}
 
-
+// TODO Safal
 // @route /api/getRandomHint/{gameId}
 router.get("/getRandomHint/:id", callRandomHint); //{suggestedMove:{row,col,num}}
 
@@ -52,7 +53,7 @@ router.put("/addnote/:id", addNotes);
 // @route /api/deletenote/{gameId}
 router.delete("/deletenote/:id", deleteNotes);
 
-// @route /api/undo/{gameId}
-router.get("/undo/:id", undo); // {board}
+// @route /api/reset/{gameId}
+router.put("/reset/:id", resetGame);
 
 export default router;

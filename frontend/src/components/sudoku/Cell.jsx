@@ -22,7 +22,7 @@ function Cell({ row, col, cell, onCellClick, onChange, isSelected, isPrimarySele
           type="text"
           className={`m-0 h-14 w-14 cursor-default border text-center rounded-lg shadow-md transition-all duration-200 
           ${isSelected ? "bg-gray-200 border-blue-400" : "border-gray-800"}
-          ${isPrimarySelected ? "bg-green-500 text-black" : ""}
+          ${isPrimarySelected ? "bg-green-500 text-white" : ""}
           hover:bg-gray-100 focus:ring-2 focus:ring-blue-300`}
           value={value == -1 ? "" : value}
           onChange={handleOnChange}
@@ -48,7 +48,7 @@ function Cell({ row, col, cell, onCellClick, onChange, isSelected, isPrimarySele
                   return (
                     <div key={noteValueIndex}>
                       {newNotes.includes(noteValue) ? (
-                        <div className="note-block bg-black-100 rounded-full text-blue-600 font-semibold shadow-sm">
+                        <div className="note-block bg-blue-100 rounded-full text-blue-600 font-semibold shadow-sm">
                           {noteValue}
                         </div>
                       ) : (
@@ -80,5 +80,3 @@ Cell.propTypes = {
 };
 
 export default Cell;
-
-

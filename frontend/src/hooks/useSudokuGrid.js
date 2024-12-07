@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { addNumber } from "../../api/boardManipulation";
-import { addNote } from "../../api/notes";
+import { addNumber } from "../api/boardManipulation";
+import { addNote } from "../api/notes";
 export function useSudokuGrid(size, currentGameId, initialGrid) {
   // Initialize the grid state
   const [sudokuGrid, setSudokuGrid] = useState(() => {

@@ -2,7 +2,10 @@ import Game from "../database/gameSchema.js";
 import { ObjectId } from "mongodb";
 import updateGame from "../helpers/updateGame.js";
 
-
+// @params{
+// id on the url
+// body {row, col, element}
+//  }
 const addNotes = async (req, res) => {
   try {
     const gameId = new ObjectId(req.params.id);
@@ -17,6 +20,7 @@ const addNotes = async (req, res) => {
     const parsedCol = parseInt(col);
     const parsedElement = parseInt(element);
 
+    // Validate row, col, and element
     if (isNaN(parsedRow) || isNaN(parsedCol) || isNaN(parsedElement)) {
       return res.status(400).json({ error: "Invalid input. Row, column, and element must be numbers." });
     }

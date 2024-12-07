@@ -14,5 +14,3 @@ function makeDB() {
     .catch((err) => console.log(err));
 }
 export default makeDB;
-
-

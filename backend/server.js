@@ -36,7 +36,7 @@ app.use("/api", boardRouter);
 app.use("/api", gamesRouter);
 app.use('/game', gameRoutes); // For game state handling
 
-app.listen(port, (err) => {
+app.listen(port, '0.0.0.0', (err) => {
   makeDB();
   if (!err) {
     console.log(`Server is running on http://localhost:${port}/`);
@@ -44,3 +44,9 @@ app.listen(port, (err) => {
     console.log(err);
   }
 });
+
+app.use((req, res, next) => {
+	console.log(`Recieved request: ${req.method} ${req.path}`);
+	next();
+});
+

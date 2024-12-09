@@ -6,8 +6,8 @@ const GameTimer = ({ currentGameId }) => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    setSeconds(0);
-    setIsActive(false);
+    setSeconds(0); // Reset the timer whenever a new game loads
+    setIsActive(true); // Start the timer automatically
   }, [currentGameId]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const GameTimer = ({ currentGameId }) => {
 
   return (
     <div>
-      <h3 >
+      <h3>
         <b style={{ fontSize: "24px" }}>⏰ {formatTime(seconds)}</b>
         <button
           onClick={togglePause}
@@ -49,7 +49,7 @@ const GameTimer = ({ currentGameId }) => {
             fontSize: "16px", // Button text size
           }}
         >
-          {isActive ? "Pause" : seconds === 0 ? "Start" : "Resume"}
+          {isActive ? "Pause" : "Resume"}
         </button>
       </h3>
     </div>
@@ -61,3 +61,4 @@ GameTimer.propTypes = {
 };
 
 export default GameTimer;
+

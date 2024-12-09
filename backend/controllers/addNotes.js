@@ -1,6 +1,7 @@
 import Game from "../database/gameSchema.js";
 import { ObjectId } from "mongodb";
 import updateGame from "../helpers/updateGame.js";
+import checkIfValid from "../helpers/checkIfValid.js";
 
 
 const addNotes = async (req, res) => {
@@ -38,8 +39,9 @@ const addNotes = async (req, res) => {
       value: problemBoard[parsedRow][parsedCol].value,
       notes: cell,
     };
-
-    updateGame(problemBoard, gameId, game["stack"], noteMode);
+    let stack = game["stack"]
+    stack.push({ grid: problemBoard, booleanValue: checkIfValid(problemBoard) });
+    updateGame(problemBoard, gameId, stack, noteMode);
     await game.save();
     return res.json({ game });
   } catch (err) {

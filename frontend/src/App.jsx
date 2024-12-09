@@ -67,7 +67,7 @@ function App() {
                 />
               </div>
               <div data-testid="footerToolbar">
-                <FooterToolbar
+                <FooterToolbar 
                   currentGameId={currentGameId}
                   addNoteMode={addNoteMode}
                   setAddNoteMode={setAddNoteMode}

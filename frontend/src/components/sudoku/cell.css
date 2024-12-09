@@ -1,12 +1,49 @@
-.sudoku-notes-container {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  position: absolute;
-  top: 0;
-  left: 0;
+
+ .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   width: 100%;
-  pointer-events: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 1px solid #ddd;
+}
+
+.bg-default {
+  background-color: #f9f9f9; /* Default cell background */
+}
+
+.bg-highlight {
+  background-color: rgba(152, 231, 198, 0.6); /* Light blue for row/column/subgrid */
+}
+
+.bg-primary-selected {
+  background-color: #6ba585; /* Dark green for selected cell */
+  color: gray; /* Ensures text is readable */
+  font-weight: bold;
+}
+
+.cell-input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 1rem;
+  outline: none;
+}
+
+.sudoku-notes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Create a 3x3 grid for notes */
+  grid-template-rows: repeat(3, 1fr);
+  width: 100%; /* Ensure it fits inside the cell */
+  height: 100%;
+  font-size: 0.8rem;
+  color: gray;
+  text-align: center;
+  pointer-events: none; /* Prevent interaction with notes */
 }
 
 .note-block {
@@ -14,60 +51,5 @@
   align-items: center;
   justify-content: center;
   font-size: 0.75rem;
-  color: #4a4a4a; /* Default note color */
-}
-
-.sudoku-notes-row {
-  display: flex;
-  justify-content: space-around;
-}
-
-.note-block.bg-blue-100 {
-  background-color: #98FBCB;  /* Light turquoise note color */
-  padding: 2px;
-}
-
-.note-block.bg-blue-200 {
-  background-color: #BFFFED;  /* Lightest turquoise */
-}
-
-.cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: 50px;
-  font-size: 18px;
-}
-
-/* Style for selected cells */
-.cell.selected {
-  background-color: #7FCFA8;  /* Slightly darker shade of green */
-}
-
-.cell.primary-selected {
-  background-color: #558B71;  /* Dark green color for primary selection */
-  color: white;
-  font-weight: bold;
-}
-
-/* Styling for regular cells */
-input[type="text"] {
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-
-/* Hover effect for cells */
-input[type="text"]:hover {
-  background-color: #BFFFED;  /* Lighter background when hovering over cells */
-}
-
-input[type="text"]:focus {
-  outline: none;
-  border-color: #558B71;  /* Focus effect with darker green border */
-}
-
-/* Styling for non-filled cells */
-input[type="text"]:empty {
-  background-color: #F0F0F0;  /* Light gray background for empty cells */
+  color: #4a4a4a;
 }

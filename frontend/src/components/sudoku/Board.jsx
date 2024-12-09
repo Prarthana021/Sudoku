@@ -72,126 +72,57 @@ function Board({ currentGameId, setCurrentGameId, addNoteMode, boardDimension, s
     }
   };
 
-  const isGridReady = sudokuGrid.length === boardDimension && sudokuGrid.every((row) => row.length === boardDimension);
-
-  if (!isGridReady || isLoading) {
-    const placeholderCellProps = {
-      cell: {
-        value: -1,
-        notes: [[], [], []],
-      },
-      isSelected: false,
-      isPrimarySelected: false,
-      onCellClick: () => {},
-      onChange: () => {},
-    };
-
-    const subgridSize = boardDimension === 9 ? 3 : 2;
-
-    return (
-      <div className="sudoku-board-container flex flex-col items-center md:flex-row p-4">
-        <table className="mb-4 border border-black">
-          <tbody>
-            {Array.from({ length: boardDimension }, (_, i) => i)
-              .filter((i) => i % subgridSize === 0)
-              .map((startRow, quadrantRowIndex) => (
-                <tr key={quadrantRowIndex}>
-                  {Array.from({ length: boardDimension }, (_, i) => i)
-                    .filter((i) => i % subgridSize === 0)
-                    .map((startCol, quadrantColIndex) => (
-                      <td key={quadrantColIndex} className="border-0 bg-gray-800">
-                        <table className={`subgrid`}>
-                          <div
-                            key={`subgrid-${startRow}-${startCol}`}
-                            className="subgrid"
-                            style={{ display: "grid", gridTemplateRows: `repeat(${subgridSize}, 1fr)` }}
-                          >
-                            {[...Array(subgridSize)].map((_, rowIndex) => (
-                              <div
-                                key={`row-${startRow + rowIndex}`}
-                                className="row"
-                                style={{ display: "grid", gridTemplateColumns: `repeat(${subgridSize}, 1fr)` }}
-                              >
-                                {[...Array(subgridSize)].map((_, colIndex) => {
-                                  const cellRow = startRow + rowIndex;
-                                  const cellCol = startCol + colIndex;
-                                  return (
-                                    <div key={`cell-${cellRow}-${cellCol}`}>
-                                      <Cell {...placeholderCellProps} />
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            ))}
-                          </div>{" "}
-                        </table>
-                      </td>
-                    ))}
-                </tr>
-              ))}
-          </tbody>
-        </table>
-        <div className="md:ml-6 md:mt-0">
-          <center className="mb-2">
-            <GameTimer currentGameId={currentGameId} />
-          </center>
-          <Keypad onKeypadClick={handleKeypadClick} />
-        </div>
-      </div>
-    );
-  }
-
-  const getQuadrantColor = (quadrantIndex) => {
-    const colors = ["#98FBCB", "#BFFFED", "#7FCFA8", "#558B71"];
-    return colors[quadrantIndex % colors.length];
-  };
-
-  const subgridSize = boardDimension === 9 ? 3 : 2;
 
   const renderSubgrid = (startRow, startCol, quadrantIndex) => {
+    const subgridSize = boardDimension === 9 ? 3 : 2; // Subgrid size (e.g., 3x3 or 2x2)
+  
     return (
       <div
         key={`subgrid-${startRow}-${startCol}`}
         className="subgrid"
-        style={{ display: "grid", gridTemplateRows: `repeat(${subgridSize}, 1fr)` }}
+        style={{
+          display: "grid",
+          gridTemplateRows: `repeat(${subgridSize}, 1fr)`,
+          gridTemplateColumns: `repeat(${subgridSize}, 1fr)`,
+        }}
       >
         {[...Array(subgridSize)].map((_, rowIndex) => (
-          <div
-            key={`row-${startRow + rowIndex}`}
-            className="row"
-            style={{ display: "grid", gridTemplateColumns: `repeat(${subgridSize}, 1fr)` }}
-          >
-            {[...Array(subgridSize)].map((_, colIndex) => {
-              const cellRow = startRow + rowIndex;
-              const cellCol = startCol + colIndex;
-              const cellObj = sudokuGrid[cellRow][cellCol];
-              const isSelected = selectedCell.row === cellRow || selectedCell.col === cellCol;
-              return (
-                <div
-                  key={`cell-${cellRow}-${cellCol}`}
-                  className={`cell border-2 border-white rounded-sm ${getQuadrantColor(quadrantIndex)} ${isSelected && "bg-green-400 text-white"}`}
-                >
-                  <Cell
-                    row={cellRow}
-                    col={cellCol}
-                    cell={cellObj}
-                    onChange={(newCell) => handleCellChange(cellRow, cellCol, newCell, addNoteMode)}
-                    onCellClick={setSelectedCell}
-                    isSelected={isSelected}
-                    isPrimarySelected={cellRow === selectedCell.row && cellCol === selectedCell.col}
-                  />
-                </div>
-              );
-            })}
-          </div>
+          [...Array(subgridSize)].map((_, colIndex) => {
+            const cellRow = startRow + rowIndex;
+            const cellCol = startCol + colIndex;
+            const cellObj = sudokuGrid[cellRow][cellCol];
+  
+            // Determine if the cell is in the selected row, column, or subgrid
+            const isSelected =
+              selectedCell.row === cellRow || // Same row
+              selectedCell.col === cellCol || // Same column
+              (Math.floor(selectedCell.row / subgridSize) === Math.floor(cellRow / subgridSize) &&
+                Math.floor(selectedCell.col / subgridSize) === Math.floor(cellCol / subgridSize)); // Same subgrid
+  
+            return (
+              <Cell
+                key={`cell-${cellRow}-${cellCol}`}
+                row={cellRow}
+                col={cellCol}
+                cell={cellObj}
+                isSelected={isSelected} // For row/column/subgrid highlighting
+                isPrimarySelected={cellRow === selectedCell.row && cellCol === selectedCell.col} // For currently selected cell
+                onCellClick={setSelectedCell}
+                onChange={(newCell) => handleCellChange(cellRow, cellCol, newCell, addNoteMode)}
+                style={cellObj.style} // Apply the style for incorrect cells (red background)
+              />
+            );
+          })
         ))}
       </div>
     );
   };
+  
+  const subgridSize = boardDimension === 9 ? 3 : 2;
 
   return (
     <div className="flex flex-col items-center md:flex-row">
-      <table className="mb-4 border border-gray-600">
+      <table className="mb-4 border border-black-600">
         <tbody>
           {Array.from({ length: boardDimension }, (_, i) => i)
             .filter((i) => i % subgridSize === 0)
@@ -200,7 +131,7 @@ function Board({ currentGameId, setCurrentGameId, addNoteMode, boardDimension, s
                 {Array.from({ length: boardDimension }, (_, i) => i)
                   .filter((i) => i % subgridSize === 0)
                   .map((startCol, quadrantColIndex) => (
-                    <td key={quadrantColIndex} className="border-0 bg-gray-800">
+                    <td key={quadrantColIndex} className="border-0">
                       {renderSubgrid(startRow, startCol, quadrantRowIndex * subgridSize + quadrantColIndex)}
                     </td>
                   ))}
@@ -227,3 +158,5 @@ Board.propTypes = {
 };
 
 export default Board;
+
+

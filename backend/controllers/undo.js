@@ -22,6 +22,10 @@ const undo = async (req, res) => {
     const previousBoard = stack.pop(); // Get the previous state
     stack.push(previousBoard); // Re-push the previous state as the current state
     await Game.updateOne({ _id: gameId }, { problemBoard: previousBoard.grid, stack: stack });
+    // game.stack.pop()
+    // const previousBoard = game.stack.pop()
+    // game.stack.push(previousBoard)
+    // await game.save()
 
     return res.json({ board: previousBoard });
   } catch (error) {

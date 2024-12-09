@@ -1,10 +1,17 @@
+
+.footer-toolbar-container {
+  position: relative;
+  max-width: 100%;
+  height: auto;
+}
+
 .footer-toolbar {
-  position: absolute;
-  bottom: 200px;
-  right: 500px;
+  position: fixed;
+  bottom: 20px; /* Fixed position to avoid floating */
+  right: 20px; /* Adjust this to align properly */
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 10px; /* Space between buttons */
   background-color: rgba(127, 207, 168, 0.9);
   padding: 10px;
   border-radius: 12px;
@@ -30,11 +37,11 @@
   transform: scale(1.05);
 }
 
-/* Media query for responsiveness */
+/* Tablet View */
 @media (max-width: 768px) {
   .footer-toolbar {
-    right: 500px;
-    bottom: 200px;
+    bottom: 20px;
+    right: 10px; /* Adjust position */
     gap: 8px;
   }
 
@@ -45,17 +52,23 @@
   }
 }
 
+/* Mobile View */
 @media (max-width: 480px) {
   .footer-toolbar {
-    right: 5px;
-    bottom: 5px;
+    bottom: 20px;
+    right: 5px; /* Further adjustment for smaller screens */
     gap: 6px;
   }
 
   .footer-toolbar button {
-    width: 160px;
+    width: 150px;
     height: 40px;
     font-size: 0.8rem;
   }
-}
 
+  /* Reduce icon size if present */
+  .footer-toolbar svg {
+    width: 30px;
+    height: 30px;
+  }
+}

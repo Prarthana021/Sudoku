@@ -1,9 +1,6 @@
 import PropTypes from "prop-types";
-import { PiLightbulbFilamentFill } from "react-icons/pi";
-import { PiLightbulbBold } from "react-icons/pi";
-import { PiNotePencilBold } from "react-icons/pi";
-import { PiArrowArcLeftFill } from "react-icons/pi";
-import { PiArrowBendDoubleUpLeftBold } from "react-icons/pi";
+import { PiLightbulbFilamentFill, PiLightbulbBold, PiNotePencilBold, PiArrowArcLeftFill, PiArrowBendDoubleUpLeftBold } from "react-icons/pi";
+import { FaCheck } from "react-icons/fa";
 
 import {
   undo,
@@ -14,6 +11,7 @@ import {
 } from "../../api/boardManipulation";
 import { useSudokuBoard } from "../providers/board-provider";
 import { switchNote } from "../../api/notes";
+
 const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
   const { selectedCell, sudokuGrid, setSudokuGrid, setSelectedCell } = useSudokuBoard();
 
@@ -84,15 +82,31 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
     }
   };
 
+
   const handleCheckBoard = async () => {
     try {
-      const data = await correctSoFar(currentGameId);
-      console.log(data);
+      const data = await correctSoFar(currentGameId); // Call the correctSoFar API
+  
+      if (data.valid) {
+        // If the board is correct, show a success message and do nothing else
+        alert(data.message);
+      } else {
+        // Highlight incorrect cells in red
+        const newGrid = [...sudokuGrid]; // Create a copy of the grid
+        data.incorrectCells.forEach(({ row, col }) => {
+          // Set the background color of the incorrect cells to red
+          newGrid[row][col].style = { ...newGrid[row][col].style, backgroundColor: 'red' };
+        });
+  
+        setSudokuGrid(newGrid); // Update the grid with the highlighted cells
+      }
     } catch (error) {
       console.error("Error during checkBoard:", error);
+      alert("An error occurred while checking the board. Please try again.");
     }
   };
-
+  
+  
   const handleSwitchNoteMode = async () => {
     try {
       const res = await switchNote(currentGameId);
@@ -103,28 +117,7 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
   };
 
   return (
-
     <div className="fixed bottom-0 right-0 flex flex-col items-end space-y-2 mr-4">
-     <div
-  className="icon-container flex flex-col justify-around items-center p-4 rounded-md"
-  style={{
-    backgroundColor: "#ffffff", // White background
-    borderRadius: "12px",
-    padding: "10px",
-    position: "absolute",
-    bottom: "180px",
-    right: "330px",
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", // Soft shadow
-    gap: "10px",
-  }}
->
-  <PiLightbulbFilamentFill size={45} style={{ cursor: "pointer" }} />
-  <PiLightbulbBold size={45} style={{ cursor: "pointer" }} />
-  <PiNotePencilBold size={45} style={{ cursor: "pointer" }} />
-  <PiArrowBendDoubleUpLeftBold size={45} style={{ cursor: "pointer" }} />
-  <PiArrowArcLeftFill size={45} style={{ cursor: "pointer" }} />
-</div>
-
       <button
         className="p-4 text-black hover:bg-gray-200 flex items-center justify-center"
         style={{
@@ -137,15 +130,15 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           width: "200px",
           height: "40px",
           position: "absolute",
-          top: "-240px",
-          marginRight: "120px"
+          top: "-250px",
+          marginRight: "120px",
         }}
         onClick={handleUndo}
       >
-       
+        <PiArrowArcLeftFill size={20} style={{ marginRight: "8px" }} />
         Undo
       </button>
-      
+
       <button
         className="p-4 text-black hover:bg-gray-200 flex items-center justify-center"
         style={{
@@ -156,14 +149,14 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           borderRadius: "8px",
           cursor: "pointer",
           width: "200px",
-          height: "40px",
+          height: "60px",
           position: "absolute",
-          top: "-295px",
-          marginRight: "120px"
+          top: "-335px",
+          marginRight: "120px",
         }}
         onClick={handleUndoUntilCorrect}
       >
-      
+        <PiArrowBendDoubleUpLeftBold size={20} style={{ marginRight: "8px" }} />
         Undo Until Correct
       </button>
 
@@ -179,12 +172,12 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           width: "200px",
           height: "40px",
           position: "absolute",
-          top:"-350px",
-          marginRight: "120px"
-          
+          top: "-390px",
+          marginRight: "120px",
         }}
-        onClick={() => handleSwitchNoteMode()}
+        onClick={handleSwitchNoteMode}
       >
+        <PiNotePencilBold size={20} style={{ marginRight: "8px" }} />
         {addNoteMode ? "Note Mode On" : "Note Mode Off"}
       </button>
 
@@ -200,15 +193,14 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           width: "200px",
           height: "40px",
           position: "absolute",
-          top:"-410px",
-          marginRight: "120px"
+          top: "-450px",
+          marginRight: "120px",
         }}
         onClick={handleGetRandomHint}
       >
-        
-       Get Random Hint
+        <PiLightbulbFilamentFill size={20} style={{ marginRight: "8px" }} />
+        Get Random Hint
       </button>
-
 
       <button
         className="p-4 text-black hover:bg-gray-200 flex items-center justify-center"
@@ -222,12 +214,12 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           width: "200px",
           height: "40px",
           position: "absolute",
-          top:"-465px",
-          marginRight: "120px"
+          top: "-505px",
+          marginRight: "120px",
         }}
         onClick={handleGetSpecificHint}
       >
-       
+        <PiLightbulbBold size={20} style={{ marginRight: "8px" }} />
         Get Specific Hint
       </button>
 
@@ -243,12 +235,12 @@ const FooterToolbar = ({ currentGameId, addNoteMode, setAddNoteMode }) => {
           width: "250px",
           height: "50px",
           position: "absolute",
-          marginRight: "490px",
-          top:"-200px"
+          marginRight: "430px",
+          top: "-220px",
         }}
         onClick={handleCheckBoard}
       >
-      
+        <FaCheck size={20} style={{ marginRight: "8px" }} />
         Check Your Solution
       </button>
     </div>
@@ -262,3 +254,6 @@ FooterToolbar.propTypes = {
 };
 
 export default FooterToolbar;
+
+
+

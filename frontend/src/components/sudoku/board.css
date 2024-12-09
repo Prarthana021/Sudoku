@@ -1,25 +1,12 @@
-/* Sudoku Board Container */
+
 .sudoku-board-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 20px; /* Keeps internal padding */
+  margin-top: -100px;
 }
 
-/* Sudoku Board Layout */
-.sudoku-board {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr); /* Default for 9x9 board */
-  grid-template-rows: repeat(9, 1fr);
-  gap: 2px; /* Adjust for spacing between cells */
-  width: 100%; /* Responsive to container size */
-  max-width: 500px; /* Maximum size for board */
-  aspect-ratio: 1 / 1; /* Maintain square shape */
-  border: 2px solid #ccc; /* Border around the board */
-  background-color: #fff;
-}
-
-/* Individual Cell Styling */
 .cell {
   display: flex;
   justify-content: center;
@@ -28,43 +15,68 @@
   font-size: 1.2rem;
   font-weight: bold;
   background-color: #f9f9f9;
-  height: 100%; /* Consistent size with grid rows */
-  width: 100%; /* Consistent size with grid columns */
+  width: 60px; /* Set width to 60px */
+  height: 50px; /* Set height to 50px */
 }
 
-/* Styling for Selected Cells */
+.cell-input {
+  width: 100%; /* Ensure the input fills the cell width */
+  height: 100%; /* Ensure the input fills the cell height */
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  background: transparent; /* Inherit the background of the parent */
+  border: none; /* Remove default input border */
+  outline: none; /* Remove default focus outline */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 60px); /* Set the grid width to match the updated cell width */
+  grid-template-rows: repeat(9, 50px); /* Set the grid height to match the updated cell height */
+  gap: 2px;
+  width: auto; /* Adjust board width dynamically */
+  max-width: 540px; /* Adjust to fit 9 cells at 60px each */
+  aspect-ratio: unset; /* Remove forced aspect ratio */
+  border: 2px solid #ccc;
+  background-color: #fff;
+}
+
+
 .cell.selected {
-  background-color: #7FCFA8; /* Slightly darker shade of green */
+  background-color: #7FCFA8; 
 }
 
 .cell.primary-selected {
-  background-color: #558B71; /* Dark green color for primary selection */
-  color: white;
+  background-color: #558B71; 
+  color: gray;
   font-weight: bold;
 }
 
-/* Subgrid Borders */
+
 .subgrid {
-  border: 2px solid #558B71; /* Green border around each 3x3 section */
-  background-color: #BFFFED; /* Green background for subgrids */
+  border: 2px solid #558B71; 
+  background-color: #BFFFED; 
 }
 
-/* Keypad Button Styling */
+
 .keypad-button {
   background-color: #558B71;
-  color: white;
+  color:black;
   font-size: 1rem;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-/* Keypad Button Hover Effect */
+
 .keypad-button:hover {
   background-color: #6ba585;
 }
 
-/* Game Timer Styling */
+
 .game-timer {
   font-size: 1.2rem;
   font-weight: bold;
@@ -72,13 +84,21 @@
   margin-bottom: 10px;
 }
 
-/* Responsive Design for Mobile Screens */
 @media (max-width: 768px) {
   .sudoku-board {
-    max-width: 300px; /* Adjust board size for smaller screens */
+    max-width: 300px; 
   }
 
+
   .cell {
-    font-size: 1rem; /* Adjust font size */
+    font-size: 1rem;
   }
 }
+.bg-highlight {
+  background-color: rgba(152, 231, 198, 0.6); /* Light blue */
+}
+
+.bg-default {
+  background-color: #f9f9f9;
+}
+

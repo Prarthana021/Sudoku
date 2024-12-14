@@ -1,15 +1,8 @@
+// Prarthana and Gurpreet
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_API_URL || "http://localhost:9090/api";
 
-/**
- * Add a note to a cell in the sudoku board
- * @param {string} gameId - The identifier for the game.
- * @param {number} row - The row number of the cell.
- * @param {number} col - The column number of the cell.
- * @param {number} note - The note to add.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const addNote = (gameId, row, col, note) => {
   return axios
     .put(`${BASE_URL}/addnote/${gameId}`, {
@@ -24,14 +17,6 @@ export const addNote = (gameId, row, col, note) => {
     });
 };
 
-/**
- * Remove a note from a cell in the sudoku board
- * @param {string} gameId - The identifier for the game.
- * @param {number} row - The row number of the cell.
- * @param {number} col - The column number of the cell.
- * @param {number} note - The note to remove.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const removeNote = (gameId, row, col, note) => {
   return axios
     .post(`${BASE_URL}/removenote/${gameId}`, {
@@ -45,16 +30,6 @@ export const removeNote = (gameId, row, col, note) => {
     });
 };
 
-/**
- * Toggle a note in a cell on the sudoku board
- * This function sends a request to the server to either add or remove a note in the specified cell, depending on whether the note is currently present.
- *
- * @param {string} gameId - The identifier for the game.
- * @param {number} row - The row number of the cell.
- * @param {number} col - The column number of the cell.
- * @param {number} note - The note to be toggled.
- * @returns {Promise<Object>} A promise that resolves to the updated board data.
- */
 export const switchNote = (gameId, row, col, note) => {
   return axios
     .put(`${BASE_URL}/switchnote/${gameId}`, {

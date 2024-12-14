@@ -1,8 +1,9 @@
-// create 4*4 9*9 16*16 boards
+// Prarthana and Gurpreet
+
 export const generateBoard = (m, n) => {
     let board = {};
   
-    // Select a random hard coded board
+    
     let cell;
     let solution;
     let boardNum = randomInt(1, 4);

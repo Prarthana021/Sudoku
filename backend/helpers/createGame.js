@@ -1,14 +1,9 @@
+// Akash
+
 import Game from "../database/gameSchema.js";
 const createGame = async (problemBoard, solutionBoard, dimension, stack) => {
   try {
-    // the problem board cell is the object that has two things one is the value and notes(size*size of the board)
-    //[[1,2,3,4],[2,3,4,1],[3,4,1,2],[4,1,2,3]]=>
-    // [
-    // [ { 1, [ [], [], [], [] ]}, { 2, [ [], [], [], [] ]}, { 3, [ [], [], [], [] ]}, { 4, [ [], [], [], [] ]} ],
-    // [ { 2, [ [], [], [], [] ]}, { 3, [ [], [], [], [] ]}, { 4, [ [], [], [], [] ]}, { 1, [ [], [], [], [] ]} ],
-    // [ { 3, [ [], [], [], [] ]}, { 4, [ [], [], [], [] ]}, { 2, [ [], [], [], [] ]}, { 2, [ [], [], [], [] ]} ],
-    // [ { 4, [ [], [], [], [] ]}, { 1, [ [], [], [], [] ]}, { 1, [ [], [], [], [] ]}, { 3, [ [], [], [], [] ]} ]
-    //]
+
     let notes = [];
     let updatedProblemBoard = [];
 

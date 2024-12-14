@@ -1,5 +1,5 @@
 // Prarthana
-// export default Cell;
+
 import PropTypes from "prop-types";
 import { useMemo } from "react";
 import "./cell.css";
@@ -24,7 +24,7 @@ function Cell({ row, col, cell, onCellClick, onChange, isSelected, isPrimarySele
           ? "bg-highlight"
           : "bg-default"
       }`}
-      style={style} // Apply the custom style for incorrect cells (e.g., red background)
+      style={style} 
       onClick={() => onCellClick({ row, col })}
     >
       {value > 0 ? (
@@ -69,7 +69,7 @@ Cell.propTypes = {
   onChange: PropTypes.func.isRequired,
   isSelected: PropTypes.bool.isRequired,
   isPrimarySelected: PropTypes.bool.isRequired,
-  style: PropTypes.object, // Accept style prop for incorrect cells (e.g., red background)
+  style: PropTypes.object, 
 };
 
 export default Cell;

@@ -1,9 +1,8 @@
+// Aakash & Prarthana
+
 import Game from "../database/gameSchema.js";
 import { ObjectId } from "mongodb";
 import doubleStack from "./doubleStack.js";
-//{suggestedMove}
-//{0,0}
-//indexes: {row: col:}
 
 const getSpecificHint = (board, row, col) => {
   try {

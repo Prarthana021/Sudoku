@@ -1,9 +1,9 @@
-// Prarthana
+// Gurpreet and Prarthana
 .sudoku-board-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px; /* Keeps internal padding */
+  padding: 20px; 
   margin-top: -100px;
 }
 
@@ -15,31 +15,31 @@
   font-size: 1.2rem;
   font-weight: bold;
   background-color: #f9f9f9;
-  width: 60px; /* Set width to 60px */
-  height: 50px; /* Set height to 50px */
+  width: 60px; 
+  height: 50px; 
 }
 
 .cell-input {
-  width: 100%; /* Ensure the input fills the cell width */
-  height: 100%; /* Ensure the input fills the cell height */
+  width: 100%; 
+  height: 100%; 
   text-align: center;
   font-size: 1rem;
   font-weight: bold;
-  background: transparent; /* Inherit the background of the parent */
-  border: none; /* Remove default input border */
-  outline: none; /* Remove default focus outline */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
+  background: transparent; 
+  border: none; 
+  outline: none; 
+  padding: 0; 
+  margin: 0;
 }
 
 .sudoku-board {
   display: grid;
-  grid-template-columns: repeat(9, 60px); /* Set the grid width to match the updated cell width */
-  grid-template-rows: repeat(9, 50px); /* Set the grid height to match the updated cell height */
+  grid-template-columns: repeat(9, 60px); 
+  grid-template-rows: repeat(9, 50px); 
   gap: 2px;
-  width: auto; /* Adjust board width dynamically */
-  max-width: 540px; /* Adjust to fit 9 cells at 60px each */
-  aspect-ratio: unset; /* Remove forced aspect ratio */
+  width: auto;
+  max-width: 540px; 
+  aspect-ratio: unset; 
   border: 2px solid #ccc;
   background-color: #fff;
 }

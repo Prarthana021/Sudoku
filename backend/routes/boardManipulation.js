@@ -13,46 +13,28 @@ import callSpecificHint from "../controllers/getSpecificHint.js";
 
 const router = express.Router();
 
-// @route /api/addNumber/{gameId}
-router.post("/addnumber/:id", addNumberIntoBoard); // {valid:true or false, board,stack}
+router.post("/addnumber/:id", addNumberIntoBoard); 
 
-// TODO frontend
-// @route /api/deleteelement/{gameId}
-router.post("/deleteelement/:id", deleteElementFromBoard); // {valid:true or false, board}
+router.post("/deleteelement/:id", deleteElementFromBoard); 
 
-// TODO frontend
-// @route /api/checksolved/{gameId}
-router.get("/checksolved/:id", checkIfSolved); // {isSolved:true/false}
+router.get("/checksolved/:id", checkIfSolved); 
 
-// TODO frontend
-//@route /api/correctSoFar/{gameId}
-router.get("/correctSoFar/:id", correctSoFar); // {valid:true/false}
+router.get("/correctSoFar/:id", correctSoFar); 
 
+router.get("/getRandomHint/:id", callRandomHint); 
 
-// @route /api/getRandomHint/{gameId}
-router.get("/getRandomHint/:id", callRandomHint); //{suggestedMove:{row,col,num}}
+router.post("/getSpecificHint/:id", callSpecificHint); 
 
-// @route /api/getSpecificHint/{gameId}
-router.post("/getSpecificHint/:id", callSpecificHint); //{suggestedMove} suggestedMove means the element that we can add
+router.get("/undo/:id", undo); 
 
-// @route /api/undo/{gameId}
-router.get("/undo/:id", undo); // {board}
+router.get("/undountilcorrect/:id", undoUntilCorrect); 
 
-// @route /api/undountilcorrect/{gameId}
-router.get("/undountilcorrect/:id", undoUntilCorrect); // {board}
-
-// TODO: SwitchNoteMode - Revisit necessity
-//       If removing, look for same todo on frontend
-// @route /api/switchnote
 router.put("/switchnote/:id", switchNote);
 
-// @route /api/addnote/{gameId}
 router.put("/addnote/:id", addNotes);
 
-// @route /api/deletenote/{gameId}
 router.delete("/deletenote/:id", deleteNotes);
 
-// @route /api/undo/{gameId}
 router.get("/undo/:id", undo); // {board}
 
 export default router;

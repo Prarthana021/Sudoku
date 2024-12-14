@@ -1,3 +1,4 @@
+//Gurpreet
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -6,8 +7,8 @@ const GameTimer = ({ currentGameId }) => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    setSeconds(0); // Reset the timer whenever a new game loads
-    setIsActive(true); // Start the timer automatically
+    setSeconds(0); 
+    setIsActive(true); 
   }, [currentGameId]);
 
   useEffect(() => {

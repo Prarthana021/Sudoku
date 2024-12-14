@@ -3,14 +3,6 @@ import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_API_URL || "http://localhost:9090/api";
 
-/**
- * Add a value to a cell in the sudoku board
- * @param {string} gameId - The identifier for the game.
- * @param {number} row - The row number of the cell.
- * @param {number} col - The column number of the cell.
- * @param {number} value - The value to add
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const addNumber = (gameId, row, col, value) => {
   return axios
     .post(`${BASE_URL}/addnumber/${gameId}`, {
@@ -26,13 +18,6 @@ export const addNumber = (gameId, row, col, value) => {
     });
 };
 
-/**
- * Delete a value from the sudoku board
- * @param {string} gameId - The identifier for the game.
- * @param {number} row - The row number of the cell.
- * @param {number} col - The column number of the cell.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const deleteElementFromBoard = (gameId, row, col) => {
   return axios
     .post(`${BASE_URL}/deleteelement/${gameId}`, { row, col })
@@ -42,19 +27,6 @@ export const deleteElementFromBoard = (gameId, row, col) => {
     });
 };
 
-/**
- * Check if the Sudoku board is solved and valid
- * This function sends a request to the server to verify if the Sudoku board associated with the given gameId is completely solved and valid.
- *
- * The response includes an object with properties:
- * - `isSolved`: A boolean indicating if the board is completely filled.
- * - `valid`: A boolean indicating if the filled board is a valid Sudoku solution.
- *
- * If `isSolved` is false, it additionally checks if the current state of the board is valid.
- *
- * @param {string} gameId - The identifier for the game.
- * @returns {Promise<Object>} A promise that resolves to an object containing the properties 'isSolved' and 'valid'.
- */
 export const checkIfSolved = (gameId) => {
   return axios
     .get(`${BASE_URL}/checksolved/${gameId}`)
@@ -64,19 +36,6 @@ export const checkIfSolved = (gameId) => {
     });
 };
 
-/**
- * Check if the current state of the Sudoku board is correct
- * This function sends a request to the server to assess the current state of the Sudoku board associated with the given gameId.
- * It evaluates whether the current entries on the board comply with Sudoku rules, without necessarily being a complete solution.
- *
- * The response includes an object with a property:
- * - `valid`: A boolean indicating if the current state of the board is valid according to Sudoku rules.
- *
- * Note: This function does not determine if the board is fully solved, but only checks the correctness of the current entries.
- *
- * @param {string} gameId - The identifier for the game.
- * @returns {Promise<Object>} A promise that resolves to an object containing the property 'valid'.
- */
 export const correctSoFar = (gameId) => {
   return axios
     .get(`${BASE_URL}/correctSoFar/${gameId}`)
@@ -86,11 +45,6 @@ export const correctSoFar = (gameId) => {
     });
 };
 
-/**
- * Get random hint
- * @param {string} id - The identifier for the board.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const getRandomHint = (gameId) => {
   return axios
     .get(`${BASE_URL}/getRandomHint/${gameId}`)
@@ -100,11 +54,6 @@ export const getRandomHint = (gameId) => {
     });
 };
 
-/**
- * Get specific hint
- * @param {string} id - The identifier for the board.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const getSpecificHint = (gameId, row, col) => {
   return axios
     .post(`${BASE_URL}/getspecifichint/${gameId}`, {
@@ -121,11 +70,6 @@ export const getSpecificHint = (gameId, row, col) => {
     });
 };
 
-/**
- * Undo last element on the board
- * @param {string} id - The identifier for the board.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const undo = (gameId) => {
   return axios
     .get(`${BASE_URL}/undo/${gameId}`)
@@ -142,11 +86,6 @@ export const undo = (gameId) => {
     });
 };
 
-/**
- * Undo until sudoku board is correct
- * @param {string} gameId - The identifier for the board.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const undoUntilCorrect = (gameId) => {
   return axios
     .get(`${BASE_URL}/undountilcorrect/${gameId}`)
@@ -167,11 +106,6 @@ export const undoUntilCorrect = (gameId) => {
     });
 };
 
-/**
- * Reset the sudoku game to its initial state
- * @param {string} gameId - The identifier for the game.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const resetGame = (gameId) => {
   return axios
     .put(`${BASE_URL}/reset/${gameId}`)

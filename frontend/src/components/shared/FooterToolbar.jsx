@@ -1,4 +1,4 @@
-// Prarthana
+// Prarthana and Gurpreet
 import PropTypes from "prop-types";
 import { PiLightbulbFilamentFill, PiLightbulbBold, PiNotePencilBold, PiArrowArcLeftFill, PiArrowBendDoubleUpLeftBold } from "react-icons/pi";
 import { FaCheck } from "react-icons/fa";

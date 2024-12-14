@@ -1,3 +1,5 @@
+// Prarthana
+
 const checkIfValid = (board) => {
     let rows = new Set();
     let cols = new Set();

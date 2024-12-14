@@ -1,3 +1,4 @@
+// Prarthana and Gurpreet 
 import Game from "../database/gameSchema.js";
 import { ObjectId } from "mongodb";
 
@@ -9,10 +10,9 @@ const undo = async (req, res) => {
 
     if (!game || !game.stack || game.stack.length <= 1) {
       console.log("No more moves to undo.");
-      // Instead of returning an error, return a message indicating no more undos are possible
       return res.json({
         message: "No more moves to undo.",
-        board: game ? game.problemBoard : null, // You can choose to return the current board or just a message
+        board: game ? game.problemBoard : null, 
       });
     }
 
@@ -22,10 +22,7 @@ const undo = async (req, res) => {
     const previousBoard = stack.pop(); // Get the previous state
     stack.push(previousBoard); // Re-push the previous state as the current state
     await Game.updateOne({ _id: gameId }, { problemBoard: previousBoard.grid, stack: stack });
-    // game.stack.pop()
-    // const previousBoard = game.stack.pop()
-    // game.stack.push(previousBoard)
-    // await game.save()
+   
 
     return res.json({ board: previousBoard });
   } catch (error) {

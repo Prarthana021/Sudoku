@@ -1,3 +1,5 @@
+// Aakash and Prarthana
+
 import Game from "../database/gameSchema.js";
 
 const updateGame = async (updatedBoard, gameId, updatedStack, noteMode) => {

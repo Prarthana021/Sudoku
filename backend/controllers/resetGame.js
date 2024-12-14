@@ -1,9 +1,10 @@
+// Gurpreet
+
 import Game from "../database/gameSchema.js";
 import { ObjectId } from "mongodb";
 import updateGame from "../helpers/updateGame.js";
 
 const resetGame = async (req, res) => {
-  // TODO: Undo until stack empty instead of this
   try {
     const gameId = new ObjectId(req.params.id);
     const game = await Game.findOne({
@@ -15,7 +16,6 @@ const resetGame = async (req, res) => {
     problemBoard.forEach((arr) => {
       arr.forEach((obj) => {
         obj.value = -1;
-        // TODO: Less notes for a 4x4 dimension grid
         obj.notes = [[], [], []];
       });
     });

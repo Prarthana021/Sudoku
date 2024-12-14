@@ -1,3 +1,5 @@
+//Prarthana and Gurpreet 
+
 import Game from "../database/gameSchema.js";
 import { ObjectId } from "mongodb";
 // board which is the latest one

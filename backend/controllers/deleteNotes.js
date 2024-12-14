@@ -1,11 +1,8 @@
+// Gurpreet and Prarthana
+
 import Game from "../database/gameSchema.js";
 import { ObjectId } from "mongodb";
 import updateGame from "../helpers/updateGame.js";
-
-// @params{
-// id on the url
-// body {row,col ,element}
-//  }
 
 const deleteNotes = async (req, res) => {
   try {

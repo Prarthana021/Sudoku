@@ -1,3 +1,4 @@
+// Prarthana and Akash 
 import express, { application } from "express";
 import bodyParser from "body-parser";
 import boardManipulationRoute from "./routes/boardManipulation.js";
@@ -23,7 +24,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// ... your route definitions
 
 app.use(express.static("dist"));
 

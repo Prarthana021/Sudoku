@@ -1,3 +1,5 @@
+//Prarthana
+
 import Game from "../database/gameSchema.js";
 import { ObjectId } from "mongodb";
 import updateGame from "../helpers/updateGame.js";

@@ -1,3 +1,5 @@
+// Aakash & Prarthana
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../database/userSchema.js"; // Import the User schema

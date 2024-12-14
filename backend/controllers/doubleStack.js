@@ -1,3 +1,5 @@
+// Aakash
+
 import checkIfCellHasValue from "../helpers/checkIfCellHasValue.js";
 import updateGame from "../helpers/updateGame.js";
 import checkIfValid from "../helpers/checkIfValid.js";
@@ -11,7 +13,6 @@ const doubleStack = async (suggestedMove, board, gameId, gameStack) => {
     const noteMode = board.noteMode;
     let problemBoard = board["problemBoard"];
     if (!checkIfCellHasValue(board, row, col)) {
-      //save it into the db and return json nothing much
 
       problemBoard[row][col].value = element;
 
@@ -22,9 +23,7 @@ const doubleStack = async (suggestedMove, board, gameId, gameStack) => {
       return problemBoard;
     }
 
-    // stack-> [a,b,c]
-    // pop()= c ->[a,b]
-    //push(d)->[a,b,d]
+
     let newStack = [];
     while (gameStack.length > 0) {
       newStack.push(gameStack.pop());
@@ -41,8 +40,7 @@ const doubleStack = async (suggestedMove, board, gameId, gameStack) => {
         gameStack.push({ grid, booleanValue });
       }
     }
-    //
-
+    
     problemBoard[row][col].value = element;
     gameStack.push({
       grid: problemBoard,

@@ -1,7 +1,8 @@
+//Prarthana
+
 import { ObjectId } from "mongodb";
 import Game from "../database/gameSchema.js";
 import doubleStack from "./doubleStack.js";
-// TODO: - undo undountilcorrect and stack remove elements check properly
 
 const checkIfValidInDB = (board, row, col, num) => {
   //check it from the db and see the element is valid or not
@@ -13,12 +14,7 @@ const checkIfValidInDB = (board, row, col, num) => {
 };
 const getRandomHint = (board) => {
   try {
-    // before getting the hint check if the cell(x,y) already has the value
-    // if already has the value then i have remove all the entries that has been adding the value of cell(x,y) from the stack
-    //update the stack using two stacks
-    // REF: prof lecture notes
 
-    // console.log(board["problemBoard"])
     const gridSize = board["problemBoard"].length;
     const badCells = [];
     for (let row = 0; row < gridSize; row++) {
@@ -62,51 +58,6 @@ const callRandomHint = async (req, res) => {
   console.log("problem", problemBoard);
   let gameStack = board["stack"];
   problemBoard = await doubleStack(suggestedMove, board, gameId, gameStack);
-
-  // const row = suggestedMove.row;
-  // const col = suggestedMove.col;
-  // const element = suggestedMove[ "num" ];
-  // const noteMode = board.noteMode;
-  // if (!checkIfCellHasValue(board, row, col)) {
-  //   //save it into the db and return json nothing much
-
-  //   problemBoard[ row ][ col ].value = element;
-
-  //   gameStack.push({ grid: problemBoard, booleanValue: checkIfValid(problemBoard) });
-  //   //updatestack
-
-  //   await updateGame(problemBoard, gameId, gameStack, noteMode);
-  //   return res.json({suggestedMove,updatedBoard:problemBoard})
-  // }
-
-  // // stack-> [a,b,c]
-  // // pop()= c ->[a,b]
-  // //push(d)->[a,b,d]
-  // let newStack = [];
-  // while (gameStack.length > 0) {
-  //   newStack.push(gameStack.pop());
-  // }
-  // gameStack = [];
-  // while (newStack.length > 0) {
-  //   let top = newStack.pop();
-  //   let grid = top[ "grid" ];
-  //   let booleanValue=top["booleanValue"]
-  //   let cell = grid[ row ][ col ].value;
-  //   if (cell !== -1) {
-  //     continue;
-  //   }
-  //   else if(cell===-1){
-  //     gameStack.push({grid,booleanValue});
-  //   }
-  // }
-  // //
-
-  // problemBoard[ row ][ col ].value = element;
-  // gameStack.push({
-  //   grid:problemBoard,
-  //   booleanValue:checkIfValid(problemBoard)
-  // });
-  // updateGame(problemBoard, gameId, gameStack, noteMode);
   return res.json({
     suggestedMove,
     updatedBoard: problemBoard,

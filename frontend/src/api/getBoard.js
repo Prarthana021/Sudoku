@@ -1,11 +1,8 @@
+// Gurpreet
 import axios from "axios";
 
 const BASE_URL = import.meta.env.VITE_BACKEND_API_URL || "http://localhost:9090/api";
 
-/**
- * Get a 4x4 sudoku board.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const getFourBoard = () => {
   return axios
     .get(`${BASE_URL}/newboard/4`)
@@ -15,10 +12,6 @@ export const getFourBoard = () => {
     });
 };
 
-/**
- * Get a 9x9 sudoku board.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const getNineBoard = () => {
   return axios
     .get(`${BASE_URL}/newboard/9`)
@@ -28,10 +21,6 @@ export const getNineBoard = () => {
     });
 };
 
-/**
- * Get a 16x16 sudoku board.
- * @returns {Promise<Object>} A promise that resolves to the board data.
- */
 export const getSixteenBoard = () => {
   return axios
     .get(`${BASE_URL}/newboard/16`)

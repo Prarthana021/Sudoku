@@ -1,3 +1,5 @@
+// Prarthana
+
 import mongoose from "mongoose";
 
 const sudokuCellSchema = new mongoose.Schema(
@@ -9,12 +11,12 @@ const sudokuCellSchema = new mongoose.Schema(
 );
 
 const gameSchema = new mongoose.Schema({
-  problemBoard: [[sudokuCellSchema]], // Array of arrays of numbers
-  solutionBoard: [[Number]], // Array of arrays of numbers
+  problemBoard: [[sudokuCellSchema]], 
+  solutionBoard: [[Number]], 
   dimension: Number,
   stack: [
     {
-      grid: [[sudokuCellSchema]], // Array of arrays of numbers
+      grid: [[sudokuCellSchema]], 
       booleanValue: Boolean,
     },
   ],

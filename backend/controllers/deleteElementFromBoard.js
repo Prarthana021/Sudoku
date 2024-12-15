@@ -1,4 +1,4 @@
-//Gurpreet
+// Gurpreet
 import checkIfValid from "../helpers/checkIfValid.js";
 import Game from "../database/gameSchema.js";
 import { ObjectId } from "mongodb";

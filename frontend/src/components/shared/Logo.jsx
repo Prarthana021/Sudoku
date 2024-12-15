@@ -1,4 +1,4 @@
-// Gurpreet
+// Gurpreet 
 import logo from "../../assets/sudoku-white-small.png";
 
 function Logo() {

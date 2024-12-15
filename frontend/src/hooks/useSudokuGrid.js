@@ -1,4 +1,4 @@
-// Akash
+// Akash and Prarthana
 import { useState } from "react";
 import { addNumber } from "../api/boardManipulation";
 import { addNote } from "../api/notes";
